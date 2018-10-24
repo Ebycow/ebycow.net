@@ -2,11 +2,14 @@ import * as PIXI from 'pixi.js';
 import $ from 'jquery';
 import * as Rx from 'rxjs';
 import { of } from 'rxjs';
-import { scan, map, mapTo, take, takeLast } from 'rxjs/operators';
+import { scan, map, mapTo, take, takeLast, skip } from 'rxjs/operators';
 
 
 // images
-const leftImage : string = require('./images/left-img.png');
+const images : string[] = [
+    require('./images/left-img.png'),
+    require('./images/oYbQ2ydeJYi6en8hqWDj.png'),
+];
 const bgImage : string = require('./images/p_da0341_l_da03410.jpg');
 
 const $window = $(window);
@@ -30,14 +33,15 @@ app.renderer.plugins.interaction.autoPreventDefault = false;
 
 $('.chara-disp').append(app.view);
 
-// let imgNum = 0;
-
-// if(Math.random() <= 0.002){
-//     imgNum = 1;
-// }
+let img: string;
+if(Math.random() <= 0.002){
+    img = images[1];
+} else {
+    img = images[0];
+}
 
 PIXI.loader
-.add("neko", leftImage)
+.add("neko", img)
 .add("bg" , bgImage)
 .load(init);
 
@@ -48,17 +52,17 @@ let bg : PIXI.extras.TilingSprite;
 
 let blurFilter : PIXI.filters.BlurFilter;
 
+// windowイベント
+const windowScrollObservable = Rx.fromEvent(window, 'scroll');
+const windowResizeObservable = Rx.fromEvent(window, 'resize');
 
-
-var scrollCount: any = $window.scrollTop();
-const scrollObservable = Rx.fromEvent(window, 'scroll');
-scrollObservable.subscribe(() => {
-    scrollCount = $window.scrollTop();
-});
-
-// フレームカウンタ
+// カウンタ
 var pos = 0;
 var quake = 0;
+
+windowResizeObservable.subscribe(() => {
+    app.renderer.resize($('.chara-col').width()! , 1200);
+});
 
 function init(){
 
@@ -82,16 +86,19 @@ function init(){
     neko.anchor.set(0.5);         
     app.stage.addChild(neko);
 
-    // ねこいべんと
     const nekoClickObservable : Rx.Observable<any> = Rx.fromEvent(neko, 'pointerdown');
-    const nekoClickCountObservable = nekoClickObservable.pipe(mapTo(0)).pipe(scan(count => count + 1, 0));
+    nekoClickObservable.subscribe(() => quake = 20);
+    nekoClickObservable.pipe(skip(3)).subscribe(ev => nekoChangeMessage(ev));
 
-    // 揺らす
-    nekoClickCountObservable.subscribe(() => quake = 20);
-    // セリフ変える
-    Rx.combineLatest(nekoClickCountObservable, nekoClickObservable).subscribe(value => nekoClickedSpeaker(value));
+    windowResizeObservable.subscribe(() => {
+        bg.height = app.screen.height;
+        bg.width = app.screen.width;
+    
+        neko.x = app.screen.width / 2;
+        neko.y = app.screen.height / 2;
+    });
 
-    // フェードイン
+    // 読み込み時フェードイン
     Rx.interval(10).pipe(take(100)).subscribe((value) => {
         const fader = value / 100;
 
@@ -100,60 +107,32 @@ function init(){
     });
 
     // パララックス？
-    scrollObservable.subscribe(() => {
-        neko.y = app.screen.height / 2 - scrollCount * 0.5;
+    windowScrollObservable.subscribe(() => {
+        neko.y = app.screen.height / 2 - $window.scrollTop()! * 0.5;
     });
-
 
     app.ticker.add(delta => gameLoop(delta));
 
 }
 
-function nekoClickedSpeaker(value: [number, any]){
-
-    const [ countClick , ev ] = value;
+function nekoChangeMessage(ev : any){
     const pointerEvent : PointerEvent = ev.data.originalEvent;
 
-    if(countClick > 4) {
-        var x : number = pointerEvent.offsetX;
-        var y : number = pointerEvent.offsetY;
+    const x : number = pointerEvent.offsetX;
+    const y : number = pointerEvent.offsetY;
 
-        if(y >= 10 && y < 100){
-            $('.comment').text("耳触んのもやめろや。");
+    if(y >= 10 && y < 100){
+        $('.comment').text("耳触んのもやめろや。");
 
-        } else if(y >= 300 && y < 400 || y >= 600 && y < 700){
-            $('.comment').text("……。");
+    } else if(y >= 300 && y < 400 || y >= 600 && y < 700){
+        $('.comment').text("……。");
 
-        } else {
-            $('.comment').text("さっきから好き勝手に触ってんじゃねーぞ。");
-        }
-        
+    } else {
+        $('.comment').text("さっきから好き勝手に触ってんじゃねーぞ。");
     }
+
 
 }
-
-
-
-
-$(window).on('resize', function(){
-    const charaCol = $('.chara-col').width();
-    if(charaCol !== undefined){
-        app.renderer.resize(charaCol , 1200);
-
-    }
-    
-
-    bg.height = app.screen.height;
-    bg.width = app.screen.width;
-
-    neko.x = app.screen.width / 2;
-    neko.y = app.screen.height / 2;
-
-    
-});
-
-
-
 
 // 呼吸オプション
 const offset = 0.6;
