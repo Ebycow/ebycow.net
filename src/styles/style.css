@@ -1,0 +1,28 @@
+body { font-family: "Rounded Mplus 1c", -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif; font-size: 1.2rem;}
+
+.bg-paper {
+    background-color: rgb(255, 255, 255) !important;
+    background-image: url('../images/paper_texture_11.png');
+
+}
+
+.bg-c {
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.5);
+    border-left: 15px solid rgba(241, 41, 74, 0.8);
+    
+
+}
+
+.bg-b {
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.5);
+    border-left: 15px solid rgba(66, 158, 251, 0.8);
+}
+
+.bg-g {
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.5);
+    border-left: 15px solid rgba(60, 197, 117, 0.8);
+}
+
+canvas {
+    height : 1200px;
+}
