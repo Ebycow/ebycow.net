@@ -1,13 +1,19 @@
 import * as PIXI from 'pixi.js';
 import $ from 'jquery';
+import * as Rx from 'rxjs';
+import { of } from 'rxjs';
+import { scan, map, mapTo, take, takeLast } from 'rxjs/operators';
+
 
 // images
 const leftImage : string = require('./images/left-img.png');
 const bgImage : string = require('./images/p_da0341_l_da03410.jpg');
 
+const $window = $(window);
+
 PIXI.utils.sayHello(PIXI.utils.isWebGLSupported() ? "WebGL" : "canvas");
 
-var app = new PIXI.Application(
+const app = new PIXI.Application(
     {
         width: $('.chara-col').width() ,
         height: 1200,
@@ -19,72 +25,98 @@ var app = new PIXI.Application(
 );
 
 app.renderer.autoResize = true;
-// app.renderer.view.style['touch-action'] = 'auto';
+app.renderer.view.style.touchAction = 'auto';
 app.renderer.plugins.interaction.autoPreventDefault = false;
 
 $('.chara-disp').append(app.view);
 
-let imgNum = 0;
+// let imgNum = 0;
 
-if(Math.random() <= 0.002){
-    imgNum = 1;
-}
+// if(Math.random() <= 0.002){
+//     imgNum = 1;
+// }
 
 PIXI.loader
 .add("neko", leftImage)
 .add("bg" , bgImage)
 .load(init);
-        
-var neko : PIXI.Sprite;
-var bg : PIXI.extras.TilingSprite;
+
+
+// スプライト, フィルター
+let neko : PIXI.Sprite;
+let bg : PIXI.extras.TilingSprite;
+
+let blurFilter : PIXI.filters.BlurFilter;
+
+
+
+var scrollCount: any = $window.scrollTop();
+const scrollObservable = Rx.fromEvent(window, 'scroll');
+scrollObservable.subscribe(() => {
+    scrollCount = $window.scrollTop();
+});
 
 // フレームカウンタ
 var pos = 0;
-
-var offset = 0.6;
-var speed = 0.01;
-var range = 0.01;
-
-var clicked = 0;
-var countClick = 0;
-var scrollCount : any = $(window).scrollTop();
-
-var fadeIn = 1;
-
+var quake = 0;
 
 function init(){
 
     bg = new PIXI.extras.TilingSprite(PIXI.loader.resources["bg"].texture, app.screen.width, app.screen.height);
+    bg.alpha = 0;
     
-    var blurFilter = new PIXI.filters.BlurFilter();
+    blurFilter = new PIXI.filters.BlurFilter();
     blurFilter.blur = 2;
+
     bg.filters = [blurFilter];
 
     app.stage.addChild(bg);
 
     neko = new PIXI.Sprite(PIXI.loader.resources["neko"].texture);
+    neko.alpha = 0;
+    neko.x = app.screen.width / 2;
+    neko.y = app.screen.height / 2;
     neko.interactive = true;
     neko.buttonMode = false;
 
     neko.anchor.set(0.5);         
     app.stage.addChild(neko);
 
-    neko.on('pointerdown', onClickNyanNyan);
+    // ねこいべんと
+    const nekoClickObservable : Rx.Observable<any> = Rx.fromEvent(neko, 'pointerdown');
+    const nekoClickCountObservable = nekoClickObservable.pipe(mapTo(0)).pipe(scan(count => count + 1, 0));
 
-    neko.x = app.screen.width / 2;
+    // 揺らす
+    nekoClickCountObservable.subscribe(() => quake = 20);
+    // セリフ変える
+    Rx.combineLatest(nekoClickCountObservable, nekoClickObservable).subscribe(value => nekoClickedSpeaker(value));
+
+    // フェードイン
+    Rx.interval(10).pipe(take(100)).subscribe((value) => {
+        const fader = value / 100;
+
+        neko.alpha = fader;
+        bg.alpha = fader - 0.5;
+    });
+
+    // パララックス？
+    scrollObservable.subscribe(() => {
+        neko.y = app.screen.height / 2 - scrollCount * 0.5;
+    });
+
 
     app.ticker.add(delta => gameLoop(delta));
 
 }
 
-        
+function nekoClickedSpeaker(value: [number, any]){
 
+    const [ countClick , ev ] = value;
+    const pointerEvent : PointerEvent = ev.data.originalEvent;
 
-function onClickNyanNyan (ev : any) {
-    countClick++;
     if(countClick > 4) {
-        var x = ev.data.originalEvent.offsetX;
-        var y = ev.data.originalEvent.offsetY;
+        var x : number = pointerEvent.offsetX;
+        var y : number = pointerEvent.offsetY;
 
         if(y >= 10 && y < 100){
             $('.comment').text("耳触んのもやめろや。");
@@ -98,13 +130,10 @@ function onClickNyanNyan (ev : any) {
         
     }
 
-    clicked = 20;
-    
 }
 
-$(window).on('scroll', function() {
-    scrollCount = $(window).scrollTop();
-});
+
+
 
 $(window).on('resize', function(){
     const charaCol = $('.chara-col').width();
@@ -123,29 +152,29 @@ $(window).on('resize', function(){
     
 });
 
+
+
+
+// 呼吸オプション
+const offset = 0.6;
+const speed = 0.01;
+const range = 0.01;
+
 function gameLoop(delta : number){
     pos += delta;
 
-    // フェードイン
-    if(fadeIn >= 0){                
-        fadeIn -= 0.05;
-        neko.alpha = 1 + -fadeIn;
-        bg.alpha = 0.3 + -fadeIn;
-    }
-
-    neko.y = app.screen.height / 2 - scrollCount * 0.5;
-
+    // 背景スクロール
     bg.tilePosition.x = pos * 0.4;
     bg.tilePosition.y = pos * 0.4;
 
-    // ブレス
+    // ねこブレス
     neko.scale.x = offset + Math.sin( pos * speed ) * range;
     neko.scale.y = offset + Math.sin( pos * speed ) * range;
 
     //クリック
-    if(clicked > 0){
-        neko.x += Math.sin( clicked ) * (clicked * 0.1);
-        clicked--;
+    if(quake > 0){
+        neko.x += Math.sin( quake ) * ( quake * 0.1 );
+        quake--;
     }
 
 }
