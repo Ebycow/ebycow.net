@@ -1,9 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
+const dateUtils = require('date-utils');
 
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ImageminWebpackPlugin } = require('imagemin-webpack');
+const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const ZipWebpackPlugin = require('zip-webpack-plugin');
 //const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
 
 // Imagemin plugins
@@ -15,17 +18,22 @@ const imageminSvgo = require('imagemin-svgo');
 
 module.exports = {
     mode: 'development',
-    entry: './src/main.ts',
+    entry: {
+        main: path.resolve(__dirname, 'src' , 'main.ts')
+    },
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
 
     optimization: {
+        runtimeChunk: 'single',
         splitChunks: {
-          chunks: 'all',
-        }
+            name: 'vendor',
+            chunks: 'all',
+        },
+        minimizer: [new UglifyJsWebpackPlugin()],
     },
 
     module: {
@@ -41,13 +49,23 @@ module.exports = {
             {
                 test: /\.css/,
                 use: [
-                  'style-loader',
-                  {loader: 'css-loader', options: {url: true}},
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true
+                        }
+                    },
                 ],
             },
             {
                 test: /\.(gif|png|jpg|eot|wof|woff|woff2|ttf|svg)$/,
-                use: 'file-loader'
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'images/[name].[ext]',
+                    }
+                }
             },
         ]
     },
@@ -68,6 +86,7 @@ module.exports = {
 
         //new webpack.optimize.AggressiveMergingPlugin(),
 
+
         new ImageminWebpackPlugin(
             {
                 imageminOptions: {
@@ -76,16 +95,28 @@ module.exports = {
             }
         ),
 
+
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
-            chunks: "all",
+            template: path.resolve(__dirname, 'src' , 'index.html'),
         }),
+
 
         // new GoogleFontsPlugin({
         //     fonts: [
         //         { family: "M PLUS Rounded 1c" },
         //     ],
         // }),
+
+        
+        new ZipWebpackPlugin({
+            path: 'zip',
+            filename: (() => {
+                const date = new Date();
+                const formatted = date.toFormat("YYYYMMDDHH24MISS");
+                return `${formatted}.zip`;
+
+            })()
+        }),
     ],
 
     // externals: {

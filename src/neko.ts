@@ -21,7 +21,8 @@ const app = new PIXI.Application(
         height: 1200,
 
         antialias: true,
-        transparent: true,
+        backgroundColor: 0xffffff,
+        //transparent: true,
         resolution: 2
     }
 );
@@ -134,7 +135,7 @@ function nekoChangeMessage(ev : any){
 }
 
 // 呼吸オプション
-const offset = 0.6;
+const offset = 0.95;
 const speed = 0.01;
 const range = 0.01;
 
