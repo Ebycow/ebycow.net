@@ -1,8 +1,7 @@
 import * as PIXI from 'pixi.js';
 import $ from 'jquery';
 import * as Rx from 'rxjs';
-import { of } from 'rxjs';
-import { scan, map, mapTo, take, takeLast, skip } from 'rxjs/operators';
+import { take, skip } from 'rxjs/operators';
 
 
 // images
