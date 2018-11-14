@@ -1,13 +1,15 @@
 import * as PIXI from 'pixi.js';
 import $ from 'jquery';
 import * as Rx from 'rxjs';
-import { take, skip } from 'rxjs/operators';
+import { take, skip, subscribeOn, debounce, debounceTime, map, filter, mapTo } from 'rxjs/operators';
+import { Observer } from 'rxjs';
 
 
 // images
 const images : string[] = [
     require('./images/left-img.png'),
     require('./images/oYbQ2ydeJYi6en8hqWDj.png'),
+    require('./images/img20181026210409.png'),
 ];
 const bgImage : string = require('./images/p_da0341_l_da03410.jpg');
 
@@ -34,11 +36,18 @@ app.renderer.plugins.interaction.autoPreventDefault = false;
 $('.chara-disp').append(app.view);
 
 let img: string;
-if(Math.random() <= 0.002){
+
+const rand = Math.random();
+if(rand <= 0.01){
+    console.log('1')
+    img = images[2];
+} else if(rand <= 0.02) {
+    console.log('2')
     img = images[1];
 } else {
-    img = images[0];
+    img = images[0]
 }
+
 
 PIXI.loader
 .add("neko", img)
@@ -57,8 +66,8 @@ const windowScrollObservable = Rx.fromEvent(window, 'scroll');
 const windowResizeObservable = Rx.fromEvent(window, 'resize');
 
 // カウンタ
-var pos = 0;
-var quake = 0;
+let pos = 0;
+let quake = 0;
 
 windowResizeObservable.subscribe(() => {
     app.renderer.resize($('.chara-col').width()! , 1200);
@@ -78,25 +87,49 @@ function init(){
 
     neko = new PIXI.Sprite(PIXI.loader.resources["neko"].texture);
     neko.alpha = 0;
-    neko.x = app.screen.width / 2;
-    neko.y = app.screen.height / 2;
+    nekoMove();
+
     neko.interactive = true;
     neko.buttonMode = false;
 
     neko.anchor.set(0.5);         
     app.stage.addChild(neko);
 
+
     const nekoClickObservable : Rx.Observable<any> = Rx.fromEvent(neko, 'pointerdown');
     nekoClickObservable.subscribe(() => quake = 20);
-    nekoClickObservable.pipe(skip(3)).subscribe(ev => nekoChangeMessage(ev));
+
+    nekoClickObservable.pipe<{ x: number, y: number }>(map(ev => { return { x : ev.data.originalEvent.offsetX, y : ev.data.originalEvent.offsetY } }))
+    .pipe<string>(map(position => {
+        const x : number = position.x;
+        const y : number = position.y;
+
+        if(y >= 10 && y < 100){
+            return "耳触んのもやめろや。";
+    
+        } else if(y >= 300 && y < 400 || y >= 600 && y < 700){
+            return "……。";
+    
+        } else {
+            return "さっきから好き勝手に触ってんじゃねーぞ。";
+
+        }
+
+    })).subscribe(string => $('.comment').text(string));
+
+    nekoClickObservable.pipe(debounce(() => Rx.timer(3000))).subscribe(() => {
+        $('.comment').text("日本国を中心に人間のモノマネで生計を立てています。");
+    });
+
 
     windowResizeObservable.subscribe(() => {
         bg.height = app.screen.height;
         bg.width = app.screen.width;
     
-        neko.x = app.screen.width / 2;
-        neko.y = app.screen.height / 2;
+        nekoMove();
     });
+
+    windowScrollObservable.subscribe(() => nekoMove());
 
     // 読み込み時フェードイン
     Rx.interval(10).pipe(take(100)).subscribe((value) => {
@@ -106,31 +139,13 @@ function init(){
         bg.alpha = fader - 0.5;
     });
 
-    // パララックス？
-    windowScrollObservable.subscribe(() => {
-        neko.y = app.screen.height / 2 - $window.scrollTop()! * 0.5;
-    });
-
     app.ticker.add(delta => gameLoop(delta));
 
 }
 
-function nekoChangeMessage(ev : any){
-    const pointerEvent : PointerEvent = ev.data.originalEvent;
-
-    const x : number = pointerEvent.offsetX;
-    const y : number = pointerEvent.offsetY;
-
-    if(y >= 10 && y < 100){
-        $('.comment').text("耳触んのもやめろや。");
-
-    } else if(y >= 300 && y < 400 || y >= 600 && y < 700){
-        $('.comment').text("……。");
-
-    } else {
-        $('.comment').text("さっきから好き勝手に触ってんじゃねーぞ。");
-    }
-
+function nekoMove() {
+    neko.x = app.screen.width / 2;
+    neko.y = app.screen.height / 2 - $window.scrollTop()! * 0.8;
 
 }
 
