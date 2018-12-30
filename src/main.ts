@@ -11,5 +11,9 @@ import './styles/googlefonts.css';
 // scripts
 import 'bootstrap';
 
-import './art.ts';
-import './neko.ts';
+import $ from 'jquery';41
+
+$(() => {
+    $('[data-toggle="tooltip"]').tooltip()
+
+});
