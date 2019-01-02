@@ -1,5 +1,6 @@
 html {
     height: 100%;
+
 }
 
 body { 
@@ -7,8 +8,19 @@ body {
     font-size: 1.2rem;
     height: 100%;
     margin: 0;
-
+    color: #D3DFDF;
     background-color: #4E5252;
+
+}
+
+h1 {
+    font-size:3rem;
+    display:inline;
+
+}
+
+p.description {
+    font-size:1rem;
 
 }
 
@@ -17,10 +29,21 @@ body {
     
 }
 
-.contents{
+ul.links-list {
+    font-size: 2rem;
+
+}
+
+ul.links-list > li > a {
+    color: #D3DFDF;
+
+}
+
+.neko {
     background-image: url("../images/img1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #4E5252;
+
 }
