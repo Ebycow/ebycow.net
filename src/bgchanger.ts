@@ -4,8 +4,7 @@ import moment from 'moment';
 //images
 const summer = require('./images/img2.jpg');
 const swimsuit = require('./images/img3.jpg');
-const subimg = require('./images/img4').img;
-
+const sub = require('./images/img4').img;
 
 let img: any | undefined = undefined;
 
@@ -24,6 +23,7 @@ if(rnd < 0.01){
 if(img !== undefined) {
     $('.neko').css({
         'background-image' : `url(${img})`
+
     });
 
 }
@@ -32,12 +32,12 @@ if(img !== undefined) {
 setTimeout(() => {
     if(rnd < 0.001){
         $('.neko').css({
-            'background-image' : `url(${subimg})`
+            'background-image' : `url(${sub})`
+
         });
 
     }
 
-}, 60000);
+}, 600000);
 
-
-
+console.log("a");
