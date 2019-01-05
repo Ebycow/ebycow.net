@@ -39,5 +39,3 @@ setTimeout(() => {
     }
 
 }, 600000);
-
-console.log("a");
