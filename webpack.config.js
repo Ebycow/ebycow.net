@@ -6,7 +6,7 @@ const dateUtils = require('date-utils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ImageminWebpackPlugin } = require('imagemin-webpack');
 const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
-const ZipWebpackPlugin = require('zip-webpack-plugin');
+// const ZipWebpackPlugin = require('zip-webpack-plugin');
 //const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
 
 // Imagemin plugins
@@ -108,15 +108,15 @@ module.exports = {
         // }),
 
         
-        new ZipWebpackPlugin({
-            path: 'zip',
-            filename: (() => {
-                const date = new Date();
-                const formatted = date.toFormat("YYYYMMDDHH24MISS");
-                return `${formatted}.zip`;
+        // new ZipWebpackPlugin({
+        //     path: 'zip',
+        //     filename: (() => {
+        //         const date = new Date();
+        //         const formatted = date.toFormat("YYYYMMDDHH24MISS");
+        //         return `${formatted}.zip`;
 
-            })()
-        }),
+        //     })()
+        // }),
     ],
 
     // externals: {
