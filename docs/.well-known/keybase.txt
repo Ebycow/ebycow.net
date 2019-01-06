@@ -1,0 +1,81 @@
+==================================================================
+https://keybase.io/ebycow
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ebycow.net
+  * I am ebycow (https://keybase.io/ebycow) on keybase.
+  * I have a public key with fingerprint 14DA C68A 925B 3ED5 A706  A66A 8003 7024 5C69 3D9B
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010161034b31a7fb28e48e5684089ce45ad94c3227b975f817a813b8179c540cefc50a",
+      "fingerprint": "14dac68a925b3ed5a706a66a800370245c693d9b",
+      "host": "keybase.io",
+      "key_id": "800370245c693d9b",
+      "kid": "010161034b31a7fb28e48e5684089ce45ad94c3227b975f817a813b8179c540cefc50a",
+      "uid": "1dce8306ea76d9e466e7d92f14a94a19",
+      "username": "ebycow"
+    },
+    "merkle_root": {
+      "ctime": 1546811520,
+      "hash_meta": "c8f6b26298350eade5f8fbbd7a621f6071c3ea619ca4ec3a6f26a1f00c1f9585",
+      "seqno": 4241443
+    },
+    "revoke": {
+      "sig_ids": [
+        "41f01f01d2eb22e146a15835db936aee616f11203aa31429e87ec96d3f72c6180f"
+      ]
+    },
+    "service": {
+      "hostname": "ebycow.net",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1546811590,
+  "expire_in": 157680000,
+  "prev": "a6dd889f61fdfe07242fca35737fcd265077f98701324bd1e01472dd1a86c059",
+  "seqno": 17,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.80
+Comment: https://keybase.io/crypto
+
+yMKvAnicrVNbaB1FGD5JVZKUnsZCQIq+bOlFTMvM7OxcDlKk4CUoiqKmmJR1duaf
+ZE1y9mR3cznEWC22BFMvIKE10BDBh1gUpahEaEXDsZoWbPNgS55KkJaiICqCoBac
+DYooPgoDPzN83/d/880/jU0bSm1N36Xz7/T7S61N55fSkVIvGT874UWJqXuVCW8A
+1gsMGsjycCA2XsVDGGGGkU8jHytuIyKACgiYoEhIDTRQRlLtE8IjyQMrMFcC+5Gr
+UgcUabA6QMrr9Gxc7YO0lsbV3MliapRmQkkSRD6YQHHEFGNKIORzRGigmfSNjByx
+P8kKhjMXqQz2xIk7c5tw3d5/4P9n3yPrcthoED5ioDgzEihjwI0kFlMlqcKyAGaQ
+VtUQODREdZ2MeZOd3hCkA4MQpkmSF9HqPC4AOKBMYBwQ5K6nsv5wCHLleFpYFhFG
+pPADBMqAM2ajyHDFCLYMcax9UAxLrShoXzFLmMIWIY2tDETgXGQwXE28CiUUU+o7
+BymMJgNQNM/iPhda5lV6POpIxTIEIkIAUycTuKYmkj5TAAwzizFBvlI+pkSC4KAl
+M77lRDMskPUOTBbN0tFYr4sXr/SP2++pQu781NIkT3Qy6M7787yWVYpU8nqtAI5B
+FP4pEUZx1bgJcYxRSLM4qbqUHPJfgUkXGIzX4hTCuEAEnLkJQKjoA6NOUjFjhJCW
+YWssIE4osVr5Afe51YawAHFupeAI+4RGBgPClBNjsBJMo0D+nSDmzqfqc5out6rK
+R1LwJpc+7b2p1NRWuuXm5uLrlNpa2//6UMfOtJQaT/BHOptPnFu7VP5l4YPxlfLu
+he63XgtHZufuaowPL4/j7fMvzzSuXT/83M6s+5WQdByttzx9+MpjtdMbl+dXfjj/
+QrcYWb3Nvvt45ctj4etXL87altL1qWebL53uerBsJ+amO96/ur390FyN/fbJQ28s
+Nh1fPrSjd7h+be3HXz8S2366MDt99PmXbv12b/ncN+Wv1s58cffUqemp3lOvzn1+
+x8ebO8eG9jcWGm/vndnWuhUuP7D44b3ynunNwcHP7vz94MbOIztP9mzZN7zl5/tv
+PBPWv39z/4Vodeaps4+KhzfgKXLfpqYXVy+u9exo3n38Sse+4MR7XV9vvVweuPHk
+xMrirl1dR243C+0H/gDlnng7
+=qNGs
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ebycow
+
+==================================================================
