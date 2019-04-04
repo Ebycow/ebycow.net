@@ -16,11 +16,13 @@ body {
 h1 {
     font-size:3rem;
     display:inline;
+    cursor: default;
 
 }
 
 p.description {
     font-size:1rem;
+    cursor: default;
 
 }
 
@@ -31,6 +33,7 @@ p.description {
 
 ul.links-list {
     font-size: 2rem;
+    cursor: default;
 
 }
 
@@ -46,4 +49,10 @@ ul.links-list > li > a {
     background-repeat: no-repeat;
     color: #4E5252;
 
+}
+
+.reverse {
+    background-color: #C7D3D3;
+    color: #4E5252;
+    transition: 1.0s ;
 }
