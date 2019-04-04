@@ -1,6 +1,6 @@
 @keyframes scroll {
     0% {
-        transform: translateY(-5px);
+        transform: translateY(-8px);
         opacity: 0;
 
     }
@@ -28,13 +28,13 @@
 
 
 .description-default {
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
     animation-name: fallback;
 
 }
 
 .description-link {
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-name: scroll;
 
 }
