@@ -10,6 +10,7 @@ body {
     margin: 0;
     color: #D3DFDF;
     background-color: #4E5252;
+    
 
 }
 
@@ -51,8 +52,3 @@ ul.links-list > li > a {
 
 }
 
-.reverse {
-    background-color: #C7D3D3;
-    color: #4E5252;
-    transition: 1.0s ;
-}

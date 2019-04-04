@@ -1,0 +1,21 @@
+.reverse {
+    background-color: #C7D3D3;
+    color: #4E5252;
+
+    transition-timing-function: ease-out;
+    transition: 1.0s ;
+    
+}
+
+.link-reverse {
+    color: #4E5252 !important;
+    transition-timing-function: ease-in;
+    transition: 1s;
+
+}
+
+/* 読み込み時にアニメーションしてしまうため、../reverser.ts 内に記述 */
+/* body, a {
+    transition: 1s;
+
+} */
