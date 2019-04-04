@@ -19,7 +19,7 @@ import './description';
 import './reverser';
 
 // tooltip
-$(() => {
-    $('[data-toggle="tooltip"]').tooltip();
+// $(() => {
+//     $('[data-toggle="tooltip"]').tooltip();
 
-});
+// });

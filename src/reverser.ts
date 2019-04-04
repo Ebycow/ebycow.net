@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-$(()=> {
+$(() => {
     $('body, a').css({
         "transition" : "1s"
     });
