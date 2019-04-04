@@ -1,43 +1,62 @@
-@keyframes scroll {
-    0% {
-        transform: translateY(-8px);
-        opacity: 0;
-
-    }
-
-    100% {
+@keyframes falldown {
+    from {
         transform: translateY(0px);
         opacity: 1;
+
     }
 
-}
-
-@keyframes fallback {
-    0% {
+    to {
         transform: translateY(5px);
         opacity: 0;
 
     }
 
-    100% {
+
+
+}
+
+@keyframes scrolldown {
+
+    from {
+        transform: translateY(-5px);
+        opacity: 0;
+    }
+
+    to {
         transform: translateY(0px);
         opacity: 1;
+
+    }
+
+}
+
+@keyframes fallback {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+
     }
 
 }
 
 
-.description-default {
-    animation-duration: 0.8s;
-    animation-name: fallback;
+.description.link {
+    animation: falldown 0.25s ease 0s alternate forwards, scrolldown 0.25s ease-out 0.25s alternate forwards;
 
 }
 
-.description-link {
-    animation-duration: 1s;
-    animation-name: scroll;
+.description.default {
+    animation: fallback 0.5s ease-out 0s forwards;
 
 }
+
+
 
 
 
