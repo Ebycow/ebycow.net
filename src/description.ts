@@ -6,7 +6,7 @@ const defaultText = descElem.text();
 let appendText: string = "";
 
 descElem.on('animationend', (ev) => {
-    const animationName: 'falldown' | 'scrolldown' | 'fallback' = ev.originalEvent.animationName;
+    const animationName = (<AnimationEvent>ev.originalEvent).animationName;
     if(animationName === 'falldown') {
         descElem.text(`#${appendText}`);
         
