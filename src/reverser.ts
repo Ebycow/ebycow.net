@@ -1,15 +1,14 @@
 import $ from 'jquery';
 
 $(() => {
-    $('body, a').css({
+    $('.contents, a').css({
         "transition" : "1s"
     });
 
 });
 
 $('h1, a').click(() => {
-    console.log("a");
-    $('body').toggleClass('reverse');
+    $('.contents').toggleClass('reverse');
     $('a').toggleClass('link-reverse');
 
 });

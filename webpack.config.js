@@ -8,6 +8,7 @@ const { ImageminWebpackPlugin } = require('imagemin-webpack');
 const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 // const ZipWebpackPlugin = require('zip-webpack-plugin');
 //const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Imagemin plugins
 const imageminGifsicle = require('imagemin-gifsicle');
@@ -100,6 +101,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src' , 'index.html'),
         }),
+
+
+        new CopyWebpackPlugin([
+            {
+                from: 'src/styles/style.css',
+                to: 'styles'
+            }
+        ]),
 
 
         // new GoogleFontsPlugin({

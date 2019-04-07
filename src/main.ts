@@ -2,8 +2,8 @@
 import './index.html';
 
 // styles
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import './styles/style.css';
+//import '../node_modules/bootstrap/dist/css/bootstrap.css';
+//import './styles/style.css'; CopyWebpackPluginでdocsから直接参照
 import './styles/description.css';
 import './styles/reverser.css';
 
