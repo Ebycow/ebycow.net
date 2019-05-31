@@ -2,8 +2,10 @@ import $ from 'jquery';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
 
+console.log(document.referrer)
+
 //images
-const normal = require('./images/img1.jpg');
+const normal = require('./images/img4.jpg');
 const summer = require('./images/img2.jpg');
 const swimsuit = require('./images/img3.jpg');
 const sub = require('./images/img4').img;
