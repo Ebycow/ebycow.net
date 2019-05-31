@@ -2,12 +2,11 @@ import $ from 'jquery';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
 
-console.log(document.referrer)
-
 //images
-const normal = require('./images/img4.jpg');
+const normal = require('./images/img1.jpg');
 const summer = require('./images/img2.jpg');
 const swimsuit = require('./images/img3.jpg');
+const blazer = require('./images/img4.jpg');
 const sub = require('./images/img4').img;
 
 let img: any | undefined = normal;
@@ -16,6 +15,11 @@ const month: number = parseInt(moment().format('MM'));
 if(month >= 6 && month <= 10){
     img = summer;
 
+}
+
+if(document.referrer === 'https://t.co/yzAoSQXM2s') {
+    img = blazer;
+    
 }
 
 const rnd: number = Math.random();
