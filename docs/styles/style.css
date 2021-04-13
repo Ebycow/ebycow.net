@@ -63,6 +63,11 @@ ul.links-list > li > a {
 
 }
 
+span.inst-txt {
+    font-size: 1rem;
+
+}
+
 .neko {
     animation: fadeIn 2s ease 0s 1 normal;
     background-color: #C7D3D3;

@@ -17,6 +17,7 @@ import $ from 'jquery';
 import './bgchanger';
 import './description';
 import './reverser';
+import './lazyreplacer'
 
 // tooltip
 // $(() => {
