@@ -1,6 +1,20 @@
 import $ from 'jquery';
 // ebytype
 
+// se
+const audioPi = require('./audios/pi.wav');
+const audioBoo = require('./audios/boo.wav');
+const audioEnd = require('./audios/end.wav');
+
+// AudioElementはキー押下時遅延ロードするのでこの時点では仮
+const se = {
+    pi : <HTMLAudioElement>$('#soundpi')[0],
+    boo : <HTMLAudioElement>$('#soundboo')[0],
+    end : <HTMLAudioElement>$('#soundend')[0]
+}
+
+let firstAttack = true;
+
 let start = true;
 let timer = 30;
 
@@ -29,6 +43,22 @@ const dict = [
 
 $('body').on('keydown.typing', (ev) => {
     if(ev.key){
+
+        if(firstAttack) {
+
+            // seの遅延ロード
+            $('body').append(`<audio id="soundpi" preload="auto"><source src="${ audioPi }" type="audio/wav"></audio>`)
+            $('body').append(`<audio id="soundboo" preload="auto"><source src="${ audioBoo }" type="audio/wav"></audio>`)
+            $('body').append(`<audio id="soundend" preload="auto"><source src="${ audioEnd }" type="audio/wav"></audio>`)
+
+            se.pi = <HTMLAudioElement>$('#soundpi')[0];
+            se.boo = <HTMLAudioElement>$('#soundboo')[0];
+            se.end = <HTMLAudioElement>$('#soundend')[0];
+
+            firstAttack = false;
+
+        }
+
         // console.log(EBYCOW.slice(ebycowPosition, ebycowPosition + 1)[0])
         const nextKey = word.slice(keyPosition, keyPosition + 1)[0]
         if(ev.key === nextKey) {
@@ -74,7 +104,7 @@ $('body').on('keydown.typing', (ev) => {
                 if(start){
                     interval = window.setInterval(() => {
                         timer--;
-                        $('.description').text(timer);
+                        $('.description').text(`Time: ${timer}`);
 
                         // finish
                         if(timer <= 0) {
@@ -84,6 +114,9 @@ $('body').on('keydown.typing', (ev) => {
                             
                             // リセットは再読み込みでよいので簡単のためイベントを切る
                             $('body').off('keydown.typing')
+
+                            se.end.currentTime = 0;
+                            se.end.play();
                         }
 
                     }, 1000);
@@ -91,7 +124,12 @@ $('body').on('keydown.typing', (ev) => {
                     start = false;
 
                 }
+
             }
+
+            se.pi.currentTime = 0;
+            se.pi.play();
+
         } else {
             if(!start) {
                 miss++;
@@ -112,6 +150,9 @@ $('body').on('keydown.typing', (ev) => {
     
                 html += word.slice(keyPosition + 1, word.length);
                 $('h1').html(html);
+
+                se.boo.currentTime = 0;
+                se.boo.play();
 
             }
     

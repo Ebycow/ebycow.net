@@ -69,6 +69,15 @@ module.exports = {
                     }
                 }
             },
+            {
+                test: /\.(wav|mp3|ogg)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'audios/[name].[ext]',
+                    }
+                }
+            },
         ]
     },
 
