@@ -6,7 +6,7 @@ import './index.html';
 //import './styles/style.css'; CopyWebpackPluginでdocsから直接参照
 import './styles/description.css';
 import './styles/reverser.css';
-import './styles/ebytyping.css';
+import './styles/typing.css';
 
 // fonts
 import '@fortawesome/fontawesome-free/js/all';
@@ -19,7 +19,7 @@ import './bgchanger';
 import './description';
 import './reverser';
 import './lazyreplacer';
-import './ebytyping';
+import './typing';
 
 // tooltip
 // $(() => {
