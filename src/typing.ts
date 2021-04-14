@@ -33,11 +33,15 @@ let score = 0;
 let miss = 0;
 
 const dict = [
-    "osakana", "kanikama", "oishi", "nekosan", 
+    // eat
+    "osakana", "kanikama", "ikayaki", "takoyaki", 
+    "ramen", "soba", "pizza", "candy",
+    "karaage", "pancake", "taiyaki", "saamon",
+    "oishi", "nekosan", "matatabi", "goronyan",
     "saikyou", "rakuraku", "eraine", "ebikau", 
     "sakusaku", "wakuwaku", "kakukaku", "zakuzaku",
     "ebycow", "umyaa", "nekochan", "uooooo",
-    "daisuki", "ikayaki", "takoyaki", "yakisoba",
+    "daisuki", "yakisoba", "peyoung", "gekikara",
 
 ]
 
