@@ -6,6 +6,8 @@ const audioPi = require('./audios/pi.wav');
 const audioBoo = require('./audios/boo.wav');
 const audioEnd = require('./audios/end.wav');
 
+$('.neko').append(`<audio id="soundpi" preload="auto"><source src="${ audioPi }" type="audio/wav"></audio>`)
+
 // AudioElementはキー押下時遅延ロードするのでこの時点では仮
 const se = {
     pi : <HTMLAudioElement>$('#soundpi')[0],
@@ -51,7 +53,6 @@ $('body').on('keydown.typing', (ev) => {
         if(firstAttack) {
 
             // seの遅延ロード
-            $('body').append(`<audio id="soundpi" preload="auto"><source src="${ audioPi }" type="audio/wav"></audio>`)
             $('body').append(`<audio id="soundboo" preload="auto"><source src="${ audioBoo }" type="audio/wav"></audio>`)
             $('body').append(`<audio id="soundend" preload="auto"><source src="${ audioEnd }" type="audio/wav"></audio>`)
 

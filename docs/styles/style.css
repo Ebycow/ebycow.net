@@ -11,6 +11,11 @@
 
 }
 
+:root {
+  --main-color: #bde5f3;
+  --base-color: #323232;
+}
+
 html {
     height: 100%;
 
@@ -21,33 +26,33 @@ body {
     font-size: 1.2rem;
     height: 100%;
     margin: 0;
-    color: #D3DFDF;
+    color: var(--main-color);
     /* background-color: #4E5252; */
-    background-color: #C7D3D3;
+    background-color: var(--main-color);
     
 
 }
 
 .contents {
-    background-color: #4E5252;
+    background-color: var(--base-color);
 
 }
 
 h1 {
-    font-size:3rem;
+    font-size:5vh;
     display:inline;
     cursor: default;
 
 }
 
 p.description {
-    font-size:1rem;
+    font-size:1.5vh;
     cursor: default;
 
 }
 
 .texts > a {
-    color: #D3DFDF;
+    color: var(--main-color);
     
 }
 
@@ -58,7 +63,7 @@ ul.links-list {
 }
 
 ul.links-list > li > a {
-    color: #D3DFDF;
+    color: var(--main-color);
 
 }
 
