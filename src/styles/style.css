@@ -39,14 +39,14 @@ body {
 }
 
 h1 {
-    font-size:5.5vh;
+    font-size:3.5rem;
     display:inline;
     cursor: default;
 
 }
 
 p.description {
-    font-size:1.8vh;
+    /* font-size:1.8vh; */
     cursor: default;
 
 }
