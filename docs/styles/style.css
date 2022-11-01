@@ -12,7 +12,7 @@
 }
 
 :root {
-  --main-color: #bde5f3;
+  --main-color: #ffffff;
   --base-color: #323232;
 }
 
@@ -39,14 +39,14 @@ body {
 }
 
 h1 {
-    font-size:5vh;
+    font-size:5.5vh;
     display:inline;
     cursor: default;
 
 }
 
 p.description {
-    font-size:1.5vh;
+    font-size:1.8vh;
     cursor: default;
 
 }
