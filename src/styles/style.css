@@ -73,7 +73,7 @@ span.inst-txt {
 }
 
 .neko {
-    animation: fadeIn 2s ease 0s 1 normal;
+    
     background-color: #ffffff;
     /* background-image: url("../images/img1.jpg"); */
     background-size: cover;
