@@ -11,6 +11,17 @@
 
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+
+    }
+
+}
+
 :root {
   --main-color: #ffffff;
   --base-color: #323232;
@@ -82,3 +93,10 @@ span.inst-txt {
 
 }
 
+.neko-fadeIn {
+    animation: fadeIn 2s ease 0s 1 normal;
+}
+
+.neko-fadeOut {
+    animation: fadeOut 2s ease 0s 1 normal;
+}

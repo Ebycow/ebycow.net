@@ -18,21 +18,34 @@ if(img !== undefined) {
 
 }
 
+$('.neko').addClass('neko-fadeIn');
+
 setInterval(() => {
-    const random = Math.floor( Math.random() * 19 );
-    //images
-    const normal = require(`./images/${ random }.png`);
+    $('.neko').removeClass('neko-fadeIn');
+    $('.neko').addClass('neko-fadeOut');
 
-    let img: any | undefined = normal;
 
-    $('.neko').fadeOut(1000, () => {
+
+    setTimeout(() => {
+        const random = Math.floor( Math.random() * 19 );
+        //images
+        const normal = require(`./images/${ random }.png`);
+
+        let img: any | undefined = normal;
+
+
         if(img !== undefined) {
             $('.neko').css({
                 'background-image' : `url(${img})`
-    
-            });
-    
-        }
-    }).fadeIn()
 
-}, 10000)
+            });
+
+        }
+        $('.neko').addClass('neko-fadeIn');
+        $('.neko').removeClass('neko-fadeOut');
+    }, 1000);
+
+
+    
+
+}, 8000)
