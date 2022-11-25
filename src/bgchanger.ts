@@ -2,8 +2,9 @@ import $ from 'jquery';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
 
+const MAX_IMAGES = 102;
 
-const random = Math.floor( Math.random() * 19 );
+const random = Math.floor( Math.random() * MAX_IMAGES );
 //images
 const normal = require(`./images/${ random }.png`);
 
@@ -27,7 +28,8 @@ setInterval(() => {
 
 
     setTimeout(() => {
-        const random = Math.floor( Math.random() * 19 );
+        // TODO: 重複問題
+        const random = Math.floor( Math.random() * MAX_IMAGES );
         //images
         const normal = require(`./images/${ random }.png`);
 
