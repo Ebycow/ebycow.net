@@ -2,7 +2,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
 
-const MAX_IMAGES = 102;
+const MAX_IMAGES = 10;
 
 const random = Math.floor( Math.random() * MAX_IMAGES );
 //images
