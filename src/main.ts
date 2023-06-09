@@ -15,7 +15,7 @@ import '@fortawesome/fontawesome-free/js/all';
 // scripts
 import 'bootstrap';
 import $ from 'jquery';
-import './bgchanger';
+// import './bgchanger';
 import './description';
 import './reverser';
 import './lazyreplacer';
