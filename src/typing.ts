@@ -1,18 +1,33 @@
 import $ from 'jquery';
 // ebytype
 
+const audioContext = new ((window as any).AudioContext || (window as any).webkitAudioContext)();
+
 // se
 const audioPi = require('./audios/pi.wav');
 const audioBoo = require('./audios/boo.wav');
 const audioEnd = require('./audios/end.wav');
 
-$('.neko').append(`<audio id="soundpi" preload="auto"><source src="${ audioPi }" type="audio/wav"></audio>`)
+async function fetchAndDecodeAudio(path: string): Promise<AudioBuffer> {
+    const response = await fetch(path);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    return audioBuffer;
+}
 
-// AudioElementはキー押下時遅延ロードするのでこの時点では仮
+async function playSound(audioBufferPromise: Promise<AudioBuffer>, pitch = 1) {
+    const audioBuffer = await audioBufferPromise;
+    const source = audioContext.createBufferSource();
+    source.buffer = audioBuffer;
+    source.playbackRate.value = pitch;
+    source.connect(audioContext.destination);
+    source.start(0);
+}
+
 const se = {
-    pi : <HTMLAudioElement>$('#soundpi')[0],
-    boo : <HTMLAudioElement>$('#soundboo')[0],
-    end : <HTMLAudioElement>$('#soundend')[0]
+    pi: fetchAndDecodeAudio(audioPi),
+    boo: fetchAndDecodeAudio(audioBoo),
+    end: fetchAndDecodeAudio(audioEnd),
 }
 
 let firstAttack = true;
@@ -51,14 +66,6 @@ $('body').on('keydown.typing', (ev) => {
     if(ev.key){
 
         if(firstAttack) {
-
-            // seの遅延ロード
-            $('body').append(`<audio id="soundboo" preload="auto"><source src="${ audioBoo }" type="audio/wav"></audio>`)
-            $('body').append(`<audio id="soundend" preload="auto"><source src="${ audioEnd }" type="audio/wav"></audio>`)
-
-            se.pi = <HTMLAudioElement>$('#soundpi')[0];
-            se.boo = <HTMLAudioElement>$('#soundboo')[0];
-            se.end = <HTMLAudioElement>$('#soundend')[0];
 
             firstAttack = false;
 
@@ -120,8 +127,7 @@ $('body').on('keydown.typing', (ev) => {
                             // リセットは再読み込みでよいので簡単のためイベントを切る
                             $('body').off('keydown.typing')
 
-                            se.end.currentTime = 0;
-                            se.end.play();
+                            playSound(se.end);
                         }
 
                     }, 1000);
@@ -132,8 +138,7 @@ $('body').on('keydown.typing', (ev) => {
 
             }
 
-            se.pi.currentTime = 0;
-            se.pi.play();
+            playSound(se.pi, Math.random() * 1 + 0.5);
 
         } else {
             if(!start) {
@@ -156,8 +161,7 @@ $('body').on('keydown.typing', (ev) => {
                 html += word.slice(keyPosition + 1, word.length);
                 $('h1').html(html);
 
-                se.boo.currentTime = 0;
-                se.boo.play();
+                playSound(se.boo);
 
             }
     
