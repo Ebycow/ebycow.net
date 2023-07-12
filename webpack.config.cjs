@@ -16,6 +16,7 @@ const imageminJpegtran = require('imagemin-jpegtran');
 const imageminMozjpg = require('imagemin-mozjpeg');
 const imageminOptipng = require('imagemin-optipng');
 const imageminSvgo = require('imagemin-svgo');
+const imageminWebp = require('imagemin-webp');
 
 module.exports = {
     mode: 'development',
@@ -121,10 +122,18 @@ module.exports = {
 
         new CopyWebpackPlugin([
             {
-                from: 'src/images/',
-                to: 'images'
+                from: 'src/images/*.png',
+                to: 'images/[name].webp'
             }
         ]),
+
+        new ImageminWebpackPlugin({
+            plugins: [
+                imageminWebp({
+                    quality: 50
+                })
+            ]
+        }),
 
 
         // new GoogleFontsPlugin({
