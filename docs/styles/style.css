@@ -38,7 +38,6 @@ body {
     color: var(--main-color);
     /* background-color: #4E5252; */
     background-color: var(--main-color);
-    overflow: hidden;
 
 }
 
