@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 $(() => {
     $('.contents, a').css({
-        "transition" : "1s"
+        "transition" : "background-color 1s"
     });
 
 });

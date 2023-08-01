@@ -127,13 +127,21 @@ module.exports = {
             }
         ]),
 
+        new CopyWebpackPlugin([
+            {
+                from: 'src/images/*.svg',
+                to: 'images/[name].svg'
+            }
+        ]),
+
         new ImageminWebpackPlugin({
+            test: /\.(png|jpg|jpeg)$/,
             plugins: [
                 imageminWebp({
                     quality: 50
                 })
             ]
-        }),
+        })
 
 
         // new GoogleFontsPlugin({

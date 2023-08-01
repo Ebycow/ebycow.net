@@ -38,7 +38,26 @@ body {
     color: var(--main-color);
     /* background-color: #4E5252; */
     background-color: var(--main-color);
+    overflow: hidden;
+
+}
+
+.col-sm-5 {
+    height: 40vh;
+}
+
+.col-sm-7 {
+    height: 60vh;
+}
+
+@media (min-width: 576px) {
+    .col-sm-5 {
+        height: 100vh;
+    }
     
+    .col-sm-7 {
+        height: 100vh;
+    }
 
 }
 
@@ -79,6 +98,16 @@ ul.links-list > li > a {
 span.inst-txt {
     font-size: 1rem;
 
+}
+
+.logo-nostr {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.logo-nostr svg {
+    margin-top: -0.4rem;
 }
 
 .neko {
