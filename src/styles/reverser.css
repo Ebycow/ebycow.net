@@ -1,6 +1,6 @@
 .reverse {
     background-color: #ffffff;
-    color: #4E5252;
+    color: #324660;
 
     transition-timing-function: ease-out;
     transition: 1.0s ;
@@ -8,7 +8,7 @@
 }
 
 .link-reverse {
-    color: #4E5252 !important;
+    color: #324660 !important;
     transition-timing-function: ease-in;
     transition: 1s;
 

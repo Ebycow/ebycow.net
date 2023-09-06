@@ -22,7 +22,7 @@
 
 :root {
   --main-color: #ffffff;
-  --base-color: #323232;
+  --base-color: #385273;
 }
 
 html {
@@ -125,7 +125,7 @@ span.inst-txt {
 .neko {
     
     background-color: #ffffff;
-    background-image: url("../images/e9241554-55bd-4f79-9455-7c0068efb046.webp");
+    background-image: url("../images/cb6faf2c-5676-45fc-bf89-ed4b0f50754f.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

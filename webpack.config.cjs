@@ -129,6 +129,13 @@ module.exports = {
 
         new CopyWebpackPlugin([
             {
+                from: 'src/images/*.jpg',
+                to: 'images/[name].webp'
+            }
+        ]),
+
+        new CopyWebpackPlugin([
+            {
                 from: 'src/images/*.svg',
                 to: 'images/[name].svg'
             }
