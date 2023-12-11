@@ -8,6 +8,8 @@
 }
 
 .link-reverse {
+    --main-color: #4A4C59;
+    --base-color: #ffffff;
     color: #4A4C59 !important;
     transition-timing-function: ease-in;
     transition: 1s;
