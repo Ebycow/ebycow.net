@@ -122,6 +122,16 @@ span.inst-txt {
     margin-top: -0.4rem;
 }
 
+.logo-mal {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+}
+
+.logo-mal svg {
+    margin-top: -0.4rem;
+}
+
 .neko {
     
     background-color: #ffffff;
