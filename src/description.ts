@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 const descElem = $('.description');
-const defaultText = descElem.text();
+const defaultText = descElem.html();
 
 let appendText: string = "";
 
@@ -25,7 +25,7 @@ $('.link-item').hover(
     
     // out
     (ev) => {
-        descElem.text(defaultText);
+        descElem.html(defaultText);
         descElem.toggleClass('link');
         descElem.toggleClass('default');
 
