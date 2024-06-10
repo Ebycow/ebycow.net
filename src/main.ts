@@ -20,7 +20,7 @@ import './description';
 import './reverser';
 import './lazyreplacer';
 import './typing';
-import './svg';
+// import './svg';
 
 // tooltip
 // $(() => {

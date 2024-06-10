@@ -98,7 +98,6 @@ module.exports = {
 
         //new webpack.optimize.AggressiveMergingPlugin(),
 
-
         new ImageminWebpackPlugin(
             {
                 imageminOptions: {
