@@ -97,39 +97,25 @@ p.description {
 }
 
 ul.links-list {
+    margin-bottom: 0;
     font-size: 2rem;
     cursor: default;
 
 }
+
 
 ul.links-list > li > a {
     color: var(--main-color);
 
 }
 
+.list-inline-item {
+    margin-right: 0 !important;
+}
+
 span.inst-txt {
     font-size: 1rem;
 
-}
-
-.logo-nostr {
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-}
-
-.logo-nostr svg {
-    margin-top: -0.4rem;
-}
-
-.logo-mal {
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-}
-
-.logo-mal svg {
-    margin-top: -0.4rem;
 }
 
 .neko {
