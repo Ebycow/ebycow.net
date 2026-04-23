@@ -81,3 +81,4 @@ typings/
 
 src/images/
 src/audios/
+.DS_Store
