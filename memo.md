@@ -1,1 +1,0 @@
-* google-fonts-webpack-pluginうごかねえ
