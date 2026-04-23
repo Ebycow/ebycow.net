@@ -128,13 +128,17 @@
           out += "|";
           for (let xx = 0; xx < FLDSIZE_X; xx++) {
             const idx = Math.min(view[xx][yy], AUG.length - 1);
-            out += AUG[idx];
+            if (idx === endMark) {
+              out += `<a href="https://github.com/Ebycow" style="color:red;text-decoration:underline;cursor:pointer">E</a>`;
+            } else {
+              out += AUG[idx] === "&" ? "&amp;" : AUG[idx];
+            }
           }
           out += "|\n";
         }
 
         out += buildBorder(hash);
-        art.textContent = out;
+        art.innerHTML = out;
       }
 
       let last = 0;
