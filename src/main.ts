@@ -1,3 +1,5 @@
+import './style.css';
+
 const FLDBASE = 16;
 const FLDSIZE_Y = FLDBASE + 1;
 const FLDSIZE_X = FLDBASE * 2 + 1;
