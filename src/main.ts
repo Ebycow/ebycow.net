@@ -9,7 +9,6 @@ const FRAME_MS = 60;
 
 const TITLE = "[EBYCOW.NET]";
 const HASH = "[nya256]";
-const GITHUB_LINK = `<a href="https://github.com/Ebycow" style="color:red;text-decoration:underline;cursor:pointer">E</a>`;
 
 const MAX_NORMAL_TRACE = CHARS.length - 3;
 const START_MARK = CHARS.length - 2;
@@ -30,6 +29,37 @@ let tick = 0;
 let lastFrameTs = 0;
 
 const art = document.getElementById("art") as HTMLPreElement;
+
+const blobs = [
+  { x: 50, y: 50, speed: 0.10 },
+  { x: 50, y: 50, speed: 0.06 },
+  { x: 50, y: 50, speed: 0.035 },
+  { x: 50, y: 50, speed: 0.018 },
+  { x: 50, y: 50, speed: 0.010 },
+];
+
+function bishopToViewportPct(): { tx: number; ty: number } {
+  const rect = art.getBoundingClientRect();
+  const charW = rect.width / (FLDSIZE_X + 2);
+  const charH = rect.height / (FLDSIZE_Y + 2);
+  const px = rect.left + (x + 1.5) * charW;
+  const py = rect.top + (y + 1.5) * charH;
+  return {
+    tx: (px / window.innerWidth) * 100,
+    ty: (py / window.innerHeight) * 100,
+  };
+}
+
+function updateGradient(): void {
+  const { tx, ty } = bishopToViewportPct();
+  for (let i = 0; i < blobs.length; i++) {
+    const b = blobs[i];
+    b.x += (tx - b.x) * b.speed;
+    b.y += (ty - b.y) * b.speed;
+    document.body.style.setProperty(`--g${i + 1}x`, `${b.x.toFixed(2)}%`);
+    document.body.style.setProperty(`--g${i + 1}y`, `${b.y.toFixed(2)}%`);
+  }
+}
 
 const clamp = (n: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, n));
@@ -71,9 +101,18 @@ function buildBorder(label: string): string {
   return `+${"-".repeat(left)}${label}${"-".repeat(right)}+`;
 }
 
-function cellHtml(idx: number): string {
-  if (idx === END_MARK) return GITHUB_LINK;
-  return CHARS[idx] === "&" ? "&amp;" : CHARS[idx];
+function cellHtml(idx: number, level: number): string {
+  if (idx === 0) return " ";
+  // E/S treated as freshest; normal cells: fresh=red(0) → old=violet(270)
+  const effectiveLevel = (idx === END_MARK || idx === START_MARK) ? MAX_NORMAL_TRACE : level;
+  const hue = (1 - (effectiveLevel - 1) / (MAX_NORMAL_TRACE - 1)) * 270;
+  const colorStyle = `color:hsl(${hue.toFixed(1)},100%,60%)`;
+  if (idx === END_MARK) {
+    return `<a href="https://github.com/Ebycow" style="${colorStyle};text-decoration:underline;cursor:pointer">E</a>`;
+  }
+  const raw = CHARS[idx];
+  const char = raw === "&" ? "&amp;" : raw;
+  return `<span style="${colorStyle}">${char}</span>`;
 }
 
 function render(): void {
@@ -86,7 +125,8 @@ function render(): void {
   for (let yy = 0; yy < FLDSIZE_Y; yy++) {
     let row = "|";
     for (let xx = 0; xx < FLDSIZE_X; xx++) {
-      row += cellHtml(Math.min(view[xx][yy], CHARS.length - 1));
+      const lvl = view[xx][yy];
+      row += cellHtml(Math.min(lvl, CHARS.length - 1), lvl);
     }
     rows.push(row + "|\n");
   }
@@ -99,6 +139,7 @@ function animate(ts: number): void {
   if (!lastFrameTs || ts - lastFrameTs >= FRAME_MS) {
     step();
     render();
+    updateGradient();
     lastFrameTs = ts;
   }
   requestAnimationFrame(animate);

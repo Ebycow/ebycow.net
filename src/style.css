@@ -1,14 +1,61 @@
+@property --g1x { syntax: '<percentage>'; inherits: false; initial-value: 20%; }
+@property --g1y { syntax: '<percentage>'; inherits: false; initial-value: 30%; }
+@property --g2x { syntax: '<percentage>'; inherits: false; initial-value: 80%; }
+@property --g2y { syntax: '<percentage>'; inherits: false; initial-value: 70%; }
+@property --g3x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g3y { syntax: '<percentage>'; inherits: false; initial-value: 10%; }
+@property --g4x { syntax: '<percentage>'; inherits: false; initial-value: 10%; }
+@property --g4y { syntax: '<percentage>'; inherits: false; initial-value: 80%; }
+@property --g5x { syntax: '<percentage>'; inherits: false; initial-value: 90%; }
+@property --g5y { syntax: '<percentage>'; inherits: false; initial-value: 20%; }
+
 :root {
   color-scheme: light dark;
-  --bg-color: #ffffff;
+  --bg-color: #e8e8ec;
   --text-color: #111111;
+  --glow1: rgba(185, 198, 225, 0.72);
+  --glow2: rgba(198, 185, 222, 0.62);
+  --glow3: rgba(182, 200, 228, 0.52);
+  --glow4: rgba(200, 190, 220, 0.42);
+  --glow5: rgba(178, 194, 226, 0.32);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #0f1115;
     --text-color: #f5f7fa;
+    --glow1: rgba(48, 68, 118, 0.80);
+    --glow2: rgba(62, 44, 98, 0.68);
+    --glow3: rgba(34, 64, 110, 0.56);
+    --glow4: rgba(55, 40, 85, 0.44);
+    --glow5: rgba(28, 50, 90, 0.34);
   }
+}
+
+@keyframes blob1 {
+  0%   { --g1x: 20%; --g1y: 30%; }
+  50%  { --g1x: 65%; --g1y: 55%; }
+  100% { --g1x: 35%; --g1y: 15%; }
+}
+@keyframes blob2 {
+  0%   { --g2x: 80%; --g2y: 70%; }
+  50%  { --g2x: 25%; --g2y: 38%; }
+  100% { --g2x: 75%; --g2y: 85%; }
+}
+@keyframes blob3 {
+  0%   { --g3x: 50%; --g3y: 10%; }
+  50%  { --g3x: 15%; --g3y: 65%; }
+  100% { --g3x: 82%; --g3y: 42%; }
+}
+@keyframes blob4 {
+  0%   { --g4x: 10%; --g4y: 80%; }
+  50%  { --g4x: 88%; --g4y: 18%; }
+  100% { --g4x: 28%; --g4y: 90%; }
+}
+@keyframes blob5 {
+  0%   { --g5x: 90%; --g5y: 20%; }
+  50%  { --g5x: 42%; --g5y: 72%; }
+  100% { --g5x: 62%; --g5y: 32%; }
 }
 
 body {
@@ -17,6 +64,12 @@ body {
   display: grid;
   place-items: center;
   background-color: var(--bg-color);
+  background-image:
+    radial-gradient(circle 12vmin at var(--g1x) var(--g1y), var(--glow1), transparent),
+    radial-gradient(circle 17vmin at var(--g2x) var(--g2y), var(--glow2), transparent),
+    radial-gradient(circle 22vmin at var(--g3x) var(--g3y), var(--glow3), transparent),
+    radial-gradient(circle 27vmin at var(--g4x) var(--g4y), var(--glow4), transparent),
+    radial-gradient(circle 32vmin at var(--g5x) var(--g5y), var(--glow5), transparent);
   color: var(--text-color);
   font-family: "Consolas", "Courier New", monospace;
 }
