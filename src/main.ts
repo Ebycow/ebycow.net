@@ -14,6 +14,7 @@ const HASH = "[nya256]";
 const MAX_NORMAL_TRACE = CHARS.length - 3;
 const START_MARK = CHARS.length - 2;
 const END_MARK = CHARS.length - 1;
+const TRACE_BANDS = new Uint8Array([1, 2, 4, 6, 8, 10, 12, MAX_NORMAL_TRACE]);
 
 const COLOR_TABLE: string[] = new Array(MAX_NORMAL_TRACE + 1).fill("");
 for (let level = 1; level <= MAX_NORMAL_TRACE; level++) {
@@ -22,11 +23,10 @@ for (let level = 1; level <= MAX_NORMAL_TRACE; level++) {
 }
 
 const TRACE_LEVELS = new Uint8Array(TRACE_WINDOW + 1);
+const LAST_TRACE_BAND = TRACE_BANDS.length - 1;
 for (let age = 0; age <= TRACE_WINDOW; age++) {
-  TRACE_LEVELS[age] = Math.max(
-    1,
-    MAX_NORMAL_TRACE - Math.floor((age / TRACE_WINDOW) * MAX_NORMAL_TRACE)
-  );
+  const band = LAST_TRACE_BAND - Math.floor((age / TRACE_WINDOW) * TRACE_BANDS.length);
+  TRACE_LEVELS[age] = TRACE_BANDS[Math.max(0, band)];
 }
 
 const startX = (Math.random() * FLDSIZE_X) | 0;
