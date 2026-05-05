@@ -14,11 +14,23 @@ const MAX_NORMAL_TRACE = CHARS.length - 3;
 const START_MARK = CHARS.length - 2;
 const END_MARK = CHARS.length - 1;
 
+const COLOR_TABLE: string[] = new Array(MAX_NORMAL_TRACE + 1);
+for (let level = 1; level <= MAX_NORMAL_TRACE; level++) {
+  const hue = (1 - (level - 1) / (MAX_NORMAL_TRACE - 1)) * 270;
+  COLOR_TABLE[level] = `hsl(${hue.toFixed(1)},100%,60%)`;
+}
+
 const startX = (Math.random() * FLDSIZE_X) | 0;
 const startY = (Math.random() * FLDSIZE_Y) | 0;
 
 const field: number[][] = Array.from({ length: FLDSIZE_X }, () =>
   Array(FLDSIZE_Y).fill(-Infinity)
+);
+const view: number[][] = Array.from({ length: FLDSIZE_X }, () =>
+  Array(FLDSIZE_Y).fill(0)
+);
+const cells: HTMLSpanElement[][] = Array.from({ length: FLDSIZE_X }, () =>
+  Array<HTMLSpanElement>(FLDSIZE_Y)
 );
 
 let x = startX;
@@ -29,37 +41,6 @@ let tick = 0;
 let lastFrameTs = 0;
 
 const art = document.getElementById("art") as HTMLPreElement;
-
-const blobs = [
-  { x: 50, y: 50, speed: 0.10 },
-  { x: 50, y: 50, speed: 0.06 },
-  { x: 50, y: 50, speed: 0.035 },
-  { x: 50, y: 50, speed: 0.018 },
-  { x: 50, y: 50, speed: 0.010 },
-];
-
-function bishopToViewportPct(): { tx: number; ty: number } {
-  const rect = art.getBoundingClientRect();
-  const charW = rect.width / (FLDSIZE_X + 2);
-  const charH = rect.height / (FLDSIZE_Y + 2);
-  const px = rect.left + (x + 1.5) * charW;
-  const py = rect.top + (y + 1.5) * charH;
-  return {
-    tx: (px / window.innerWidth) * 100,
-    ty: (py / window.innerHeight) * 100,
-  };
-}
-
-function updateGradient(): void {
-  const { tx, ty } = bishopToViewportPct();
-  for (let i = 0; i < blobs.length; i++) {
-    const b = blobs[i];
-    b.x += (tx - b.x) * b.speed;
-    b.y += (ty - b.y) * b.speed;
-    document.body.style.setProperty(`--g${i + 1}x`, `${b.x.toFixed(2)}%`);
-    document.body.style.setProperty(`--g${i + 1}y`, `${b.y.toFixed(2)}%`);
-  }
-}
 
 const clamp = (n: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, n));
@@ -101,49 +82,60 @@ function buildBorder(label: string): string {
   return `+${"-".repeat(left)}${label}${"-".repeat(right)}+`;
 }
 
-function cellHtml(idx: number, level: number): string {
-  if (idx === 0) return " ";
-  // E/S treated as freshest; normal cells: fresh=red(0) → old=violet(270)
-  const effectiveLevel = (idx === END_MARK || idx === START_MARK) ? MAX_NORMAL_TRACE : level;
-  const hue = (1 - (effectiveLevel - 1) / (MAX_NORMAL_TRACE - 1)) * 270;
-  const colorStyle = `color:hsl(${hue.toFixed(1)},100%,60%)`;
-  if (idx === END_MARK) {
-    return `<a href="https://github.com/Ebycow" style="${colorStyle};text-decoration:underline;cursor:pointer">E</a>`;
+function buildDom(): void {
+  art.textContent = "";
+  art.appendChild(document.createTextNode(`${buildBorder(TITLE)}\n`));
+  for (let yy = 0; yy < FLDSIZE_Y; yy++) {
+    art.appendChild(document.createTextNode("|"));
+    for (let xx = 0; xx < FLDSIZE_X; xx++) {
+      const span = document.createElement("span");
+      span.textContent = " ";
+      cells[xx][yy] = span;
+      art.appendChild(span);
+    }
+    art.appendChild(document.createTextNode("|\n"));
   }
-  const raw = CHARS[idx];
-  const char = raw === "&" ? "&amp;" : raw;
-  return `<span style="${colorStyle}">${char}</span>`;
+  art.appendChild(document.createTextNode(buildBorder(HASH)));
 }
 
 function render(): void {
-  const view = field.map((col) => col.map(traceLevel));
+  for (let xx = 0; xx < FLDSIZE_X; xx++) {
+    for (let yy = 0; yy < FLDSIZE_Y; yy++) {
+      view[xx][yy] = traceLevel(field[xx][yy]);
+    }
+  }
 
   if (tick <= TRACE_WINDOW) view[startX][startY] = START_MARK;
   view[x][y] = END_MARK;
 
-  const rows = [`${buildBorder(TITLE)}\n`];
   for (let yy = 0; yy < FLDSIZE_Y; yy++) {
-    let row = "|";
     for (let xx = 0; xx < FLDSIZE_X; xx++) {
+      const span = cells[xx][yy];
       const lvl = view[xx][yy];
-      row += cellHtml(Math.min(lvl, CHARS.length - 1), lvl);
-    }
-    rows.push(row + "|\n");
-  }
-  rows.push(buildBorder(HASH));
+      const idx = Math.min(lvl, CHARS.length - 1);
 
-  art.innerHTML = rows.join("");
+      if (idx === 0) {
+        span.style.color = "";
+        span.textContent = " ";
+        continue;
+      }
+
+      const effectiveLevel = idx >= START_MARK ? MAX_NORMAL_TRACE : lvl;
+      span.style.color = COLOR_TABLE[effectiveLevel];
+      span.textContent = CHARS[idx];
+    }
+  }
 }
 
 function animate(ts: number): void {
   if (!lastFrameTs || ts - lastFrameTs >= FRAME_MS) {
     step();
     render();
-    updateGradient();
     lastFrameTs = ts;
   }
   requestAnimationFrame(animate);
 }
 
+buildDom();
 render();
 requestAnimationFrame(animate);
