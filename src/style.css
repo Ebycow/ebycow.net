@@ -59,6 +59,48 @@ a {
   transform: translateY(-1px);
 }
 
+.scroll-top-button {
+  position: fixed;
+  right: clamp(16px, 4vw, 28px);
+  bottom: clamp(16px, 4vw, 28px);
+  z-index: 10;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--surface);
+  background: var(--accent-ink);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    background-color 0.16s ease,
+    color 0.16s ease,
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.scroll-top-button.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top-button:hover {
+  color: var(--surface);
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.scroll-top-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 58%, transparent);
+  outline-offset: 3px;
+}
+
 .site-shell {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -367,6 +409,14 @@ dd {
 
   .github-link:hover {
     background: #28241d;
+  }
+
+  .scroll-top-button {
+    color: var(--page);
+  }
+
+  .scroll-top-button:hover {
+    color: var(--page);
   }
 
   .description {

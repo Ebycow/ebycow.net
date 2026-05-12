@@ -199,10 +199,34 @@ function createTimelineCard(item: TimelineItem): HTMLElement {
   return article;
 }
 
+function setupScrollTopButton(): void {
+  const button = document.querySelector<HTMLButtonElement>('.scroll-top-button');
+  if (!button) return;
+
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const updateButtonVisibility = () => {
+    const isVisible = window.scrollY > 420;
+    button.classList.toggle('is-visible', isVisible);
+    button.tabIndex = isVisible ? 0 : -1;
+  };
+
+  button.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotionQuery.matches ? 'auto' : 'smooth',
+    });
+  });
+
+  updateButtonVisibility();
+  window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+}
+
 const app = document.querySelector<HTMLDivElement>('#app');
 if (!app) {
   throw new Error('Missing #app element.');
 }
+
+setupScrollTopButton();
 
 const fragment = document.createDocumentFragment();
 for (const item of getTimelineItems()) {
