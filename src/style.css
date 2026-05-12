@@ -122,6 +122,25 @@ h1 {
   gap: clamp(38px, 5vw, 68px) clamp(32px, 5vw, 56px);
 }
 
+.x-embed {
+  display: grid;
+  justify-content: center;
+  width: min(100%, 640px);
+  margin-top: clamp(56px, 7vw, 92px);
+  margin-inline: auto;
+}
+
+.x-embed .twitter-tweet {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.x-embed iframe {
+  width: 100% !important;
+  max-width: none !important;
+}
+
 .work-card {
   display: grid;
   grid-template-columns: clamp(108px, 12vw, 150px) minmax(0, 1fr);
