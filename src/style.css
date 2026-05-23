@@ -375,6 +375,10 @@ dd {
     width: min(42vw, 150px);
   }
 
+  .work-list {
+    align-items: start;
+  }
+
   .work-card {
     grid-template-columns: 1fr;
   }
@@ -386,6 +390,16 @@ dd {
 
   .metadata {
     grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: clamp(1rem, 4.2vw, 1.55rem);
+  }
+
+  .description {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
   }
 }
 
