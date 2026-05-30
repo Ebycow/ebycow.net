@@ -1,0 +1,1 @@
+# えびかうがホームページに載っております/Users/ebycow/Library/CloudStorage/GoogleDrive-ebycowcow/マイドライブ/ebycow.net/docs/index.html
