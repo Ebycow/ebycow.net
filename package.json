@@ -5,12 +5,11 @@
   "scripts": {
     "dev": "vite",
     "fetch:bandcamp": "node scripts/fetch-bandcamp.mjs",
-    "fetch:github": "node scripts/fetch-github.mjs",
-    "fetch:data": "npm run fetch:bandcamp && npm run fetch:github",
-    "build": "npm run fetch:data && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "linkedom": "^0.18.13",
     "typescript": "^5.8.3",
     "vite": "^6.3.2"
   }
