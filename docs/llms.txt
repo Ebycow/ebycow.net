@@ -1,0 +1,31 @@
+# えびかう (Ebycow)
+
+> 長野県松本市にいる猫。2011年頃からインターネット上で活動している。
+
+- サイト: https://ebycow.net/
+- Getting Over It が好き。 [Glitchless 3:31.065](https://www.speedrun.com/goiwbf/runs/z06vvj9z)
+- 最近スピードキューブ始めた、まだ一分切れてない。 single 1:23.50 · ao5 1:27.04
+- タイピングはエタイなら LaserBeam。 [monkeytype 83 wpm](https://monkeytype.com/profile/ebycow) e-typing 461 · 0 miss
+
+## Music
+
+- [Bandcamp](https://ebycow.bandcamp.com/): すべて見る
+- [Zurückkehren](https://ebycow.bandcamp.com/album/zur-ckkehren): 2022 · Album
+- [Yakisoba no Aonori](https://ebycow.bandcamp.com/track/yakisoba-no-aonori): 2020 · Single
+- [疎通](https://ebycow.bandcamp.com/track/--9): 2021 · Single
+- [Splitting](https://ebycow.bandcamp.com/album/splitting): 2022 · Album
+
+## Apps
+
+- [読み上げはなこ](https://ebycow.github.io/hanako-bot/): ボイスチャンネルでチャットを読み上げるボット。マイクなしでも会話に参加できます。 [GitHub](https://github.com/Ebycow/hanako) — Discord Bot
+- [Elin異名bot](https://misskey.io/@elinalias): 有名になると、名前とは別の通り名で呼ばれることがあるらしい。Elinの異名を1日1回投稿するボット。 — Misskey Bot
+
+## Code
+
+- [GitHub](https://github.com/Ebycow): すべて見る
+- [MMANA](https://github.com/Ebycow/MMANA): JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。（フォークして改良） — 2026/04/26 · C++
+- [EDCBaseball](https://github.com/Ebycow/EDCBaseball): EDCBの番組表データからプロ野球・MLB公式試合を一覧表示 — 2026/04/25 · Python
+- [TVTestHTTPPlugin](https://github.com/Ebycow/TVTestHTTPPlugin): TVTest の HTTP REST API プラグイン — 2026/03/25 · C++
+- [iruyo](https://github.com/Ebycow/iruyo): Twitchユーザが配信にコメントしたら通知するツール — 2026/02/25 · TypeScript
+- [twicome](https://github.com/Ebycow/twicome): Twitch VOD コメント検索・分析ツール — 2026/02/22 · Python
+- [anime2vec](https://github.com/Ebycow/anime2vec): MyAnimeList Database 2020 により学習されたアニメ作品の埋め込み表現 — 2021/12/08 · Python

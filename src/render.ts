@@ -5,7 +5,6 @@ import { projects, type Project } from './projects';
 // 表示する Bandcamp 作品（この順に並ぶ）
 const FEATURED_MUSIC_URLS = [
   'https://ebycow.bandcamp.com/album/zur-ckkehren',
-  'https://ebycow.bandcamp.com/album/touchstones',
   'https://ebycow.bandcamp.com/track/yakisoba-no-aonori',
   'https://ebycow.bandcamp.com/track/--9',
   'https://ebycow.bandcamp.com/album/splitting',
