@@ -6,8 +6,6 @@
 - バイブコーディングしたり、作曲やってる。ずとまろ、YMOファン。
 - Getting Over It が好き。 [Glitchless 3:31.065](https://www.speedrun.com/goiwbf/runs/z06vvj9z)
 - 最近スピードキューブ始めた、まだ一分切れてない。 single 1:23.50 · ao5 1:27.04
-- タイピングはエタイなら LaserBeam。 [monkeytype 83 wpm](https://monkeytype.com/profile/ebycow) e-typing 461 · 0 miss
-- BMS は2014年に旧発狂初段とった。 [LR2IR ☆08](https://lr2ir.com/players/36692)
 
 ## Music
 
@@ -25,9 +23,10 @@
 ## Code
 
 - [GitHub](https://github.com/Ebycow): すべて見る
-- [MMANA](https://github.com/Ebycow/MMANA): JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。（フォークして改良） — 2026/04/26 · C++
-- [EDCBaseball](https://github.com/Ebycow/EDCBaseball): EDCBの番組表データからプロ野球・MLB公式試合を一覧表示 — 2026/04/25 · Python
-- [TVTestHTTPPlugin](https://github.com/Ebycow/TVTestHTTPPlugin): TVTest の HTTP REST API プラグイン — 2026/03/25 · C++
-- [iruyo](https://github.com/Ebycow/iruyo): Twitchユーザが配信にコメントしたら通知するツール — 2026/02/25 · TypeScript
 - [twicome](https://github.com/Ebycow/twicome): Twitch VOD コメント検索・分析ツール — 2026/02/22 · Python
+- [iruyo](https://github.com/Ebycow/iruyo): Twitchユーザが配信にコメントしたら通知するツール — 2026/02/25 · TypeScript
+- [EDCBaseball](https://github.com/Ebycow/EDCBaseball): EDCBの番組表データからプロ野球・MLB公式試合を一覧表示 — 2026/04/25 · Python
+- [Bonbori](https://github.com/Ebycow/Bonbori): BonDriverProxyEx に直接つないで地デジ・BS・CS を視聴する Apple Silicon Mac 用テレビアプリ — 2026/10/10 · Swift
+- [TVTestHTTPPlugin](https://github.com/Ebycow/TVTestHTTPPlugin): TVTest の HTTP REST API プラグイン — 2026/03/25 · C++
+- [MMANA](https://github.com/Ebycow/MMANA): JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。（フォークして改良） — 2026/04/26 · C++
 - [anime2vec](https://github.com/Ebycow/anime2vec): MyAnimeList Database 2020 により学習されたアニメ作品の埋め込み表現 — 2021/12/08 · Python

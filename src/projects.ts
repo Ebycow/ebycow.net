@@ -10,26 +10,11 @@ export type Project = {
 // 載せるプロジェクトはここを手で編集する（上から順に表示）
 export const projects: Project[] = [
   {
-    title: 'MMANA',
-    date: '2026/04/26',
-    language: 'C++',
-    description: 'JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。',
-    note: 'フォークして改良',
-    url: 'https://github.com/Ebycow/MMANA',
-  },
-  {
-    title: 'EDCBaseball',
-    date: '2026/04/25',
+    title: 'twicome',
+    date: '2026/02/22',
     language: 'Python',
-    description: 'EDCBの番組表データからプロ野球・MLB公式試合を一覧表示',
-    url: 'https://github.com/Ebycow/EDCBaseball',
-  },
-  {
-    title: 'TVTestHTTPPlugin',
-    date: '2026/03/25',
-    language: 'C++',
-    description: 'TVTest の HTTP REST API プラグイン',
-    url: 'https://github.com/Ebycow/TVTestHTTPPlugin',
+    description: 'Twitch VOD コメント検索・分析ツール',
+    url: 'https://github.com/Ebycow/twicome',
   },
   {
     title: 'iruyo',
@@ -39,11 +24,33 @@ export const projects: Project[] = [
     url: 'https://github.com/Ebycow/iruyo',
   },
   {
-    title: 'twicome',
-    date: '2026/02/22',
+    title: 'EDCBaseball',
+    date: '2026/04/25',
     language: 'Python',
-    description: 'Twitch VOD コメント検索・分析ツール',
-    url: 'https://github.com/Ebycow/twicome',
+    description: 'EDCBの番組表データからプロ野球・MLB公式試合を一覧表示',
+    url: 'https://github.com/Ebycow/EDCBaseball',
+  },
+  {
+    title: 'Bonbori',
+    date: '2026/10/10',
+    language: 'Swift',
+    description: 'BonDriverProxyEx に直接つないで地デジ・BS・CS を視聴する Apple Silicon Mac 用テレビアプリ',
+    url: 'https://github.com/Ebycow/Bonbori',
+  },
+  {
+    title: 'TVTestHTTPPlugin',
+    date: '2026/03/25',
+    language: 'C++',
+    description: 'TVTest の HTTP REST API プラグイン',
+    url: 'https://github.com/Ebycow/TVTestHTTPPlugin',
+  },
+  {
+    title: 'MMANA',
+    date: '2026/04/26',
+    language: 'C++',
+    description: 'JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。',
+    note: 'フォークして改良',
+    url: 'https://github.com/Ebycow/MMANA',
   },
   {
     title: 'anime2vec',
