@@ -38,19 +38,18 @@ export const projects: Project[] = [
     url: 'https://github.com/Ebycow/Bonbori',
   },
   {
+    title: 'ttshub',
+    date: '2026/10/07',
+    language: 'Rust',
+    description: '複数の TTS エンジンを束ねて、読み上げ Bot やチャットボットに 1 つの API で音声合成を提供するゲートウェイ',
+    url: 'https://github.com/Ebycow/ttshub',
+  },
+  {
     title: 'TVTestHTTPPlugin',
     date: '2026/03/25',
     language: 'C++',
     description: 'TVTest の HTTP REST API プラグイン',
     url: 'https://github.com/Ebycow/TVTestHTTPPlugin',
-  },
-  {
-    title: 'MMANA',
-    date: '2026/04/26',
-    language: 'C++',
-    description: 'JE3HHT 森OMが作成された、Windows上で動作するアンテナ設計解析プログラムです。',
-    note: 'フォークして改良',
-    url: 'https://github.com/Ebycow/MMANA',
   },
   {
     title: 'anime2vec',
