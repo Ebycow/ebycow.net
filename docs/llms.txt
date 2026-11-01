@@ -3,7 +3,7 @@
 > 長野県松本市にいる猫。2011年頃からインターネット上でほそぼそ活動している。
 
 - サイト: https://ebycow.net/
-- バイブコーディングしたり、作曲やってる。ずとまろ、YMOファン。
+- バイブコーディングしたり、作曲やってる。ずとまろ。YMOファン。
 - Getting Over It が好き。 [Glitchless 3:31.065](https://www.speedrun.com/goiwbf/runs/z06vvj9z)
 - 最近スピードキューブ始めた、まだ一分切れてない。 single 1:23.50 · ao5 1:27.04
 
@@ -19,7 +19,7 @@
 
 - [読み上げはなこ](https://ebycow.github.io/hanako-bot/): ボイスチャンネルでチャットを読み上げるボット。マイクなしでも会話に参加できます。 [GitHub](https://github.com/Ebycow/hanako) — Discord Bot
 - [Elin異名bot](https://misskey.io/@elinalias): 有名になると、名前とは別の通り名で呼ばれることがあるらしい。Elinの異名を1日1回投稿するボット。 — Misskey Bot
-- [MMANA](https://ebycow.github.io/MMANA/): JE3HHT 森 誠氏のアンテナ解析ソフト MMANA の計算エンジンを Rust に移植し、ブラウザで使えるようにしたもの。 [GitHub](https://github.com/Ebycow/MMANA) — Web App
+- [MMANA](https://ebycow.github.io/MMANA/): JE3HHT 森 誠氏のアンテナ解析ソフト MMANA の計算エンジンを Rust に移植したもの。 [GitHub](https://github.com/Ebycow/MMANA) — Web App
 
 ## Code
 
